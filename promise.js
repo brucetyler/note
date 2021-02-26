@@ -50,15 +50,65 @@ class _Promise{
   }
 }
 
-let promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
+
+class myPromise{
+  constructor(executor){
+    this.status = PENDING;
+    this.value = undefined;
+    this.reason = undefined;
+    this.onFulfilledCallback = [];
+    this.onRejectedCallback = [];
+    let resolve = (value)=>{
+      this.value = value;
+      this.status = RESOLVED;
+      this.onFulfilledCallback.forEach(fn=>fn())
+    }
+    let reject = (reason)=>{
+      this.reason = reason;
+      this.status = REJECT;
+      this.onRejectedCallback.forEach(fn=>fn())
+    }
+    try {
+      executor(resolve,reject)
+    } catch (error) {
+      reject(error)
+    }
+  }
+  then(onFulfilled,onRejected){
+    return new Promise((resolve,reject)=>{
+      let x;
+      if(this.status === RESOLVED){
+        x = onFulfilled(this.value);
+      }
+      if(this.status === REJECT){
+        x = onRejected(this.reason);
+      }
+      if(this.status === PENDING){
+        this.onFulfilledCallback.push(()=>{
+          onFulfilled(this.value);
+        })
+        this.onRejectedCallback.push(()=>{
+          onRejected(this.reason);
+        })
+      }
+      try {
+        resolve(x)
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+}
+
+let promise = new myPromise((resolve, reject) => {
+  // setTimeout(() => {
     resolve(10)
-    new Promise((resolve) => {
+    new myPromise((resolve) => {
       resolve(20)
     }).then(data => {
       console.log(data)
     })
-  })
+  // })
 })
 promise.then(data => {
   console.log(data)

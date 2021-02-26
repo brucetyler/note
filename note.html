@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // setTimeout(function(){
+    //     console.log('timer');
+    // }, 0)
+    // function waitFiveSeconds(){
+    //     var now = (new Date()).getTime();
+    //     while(((new Date()).getTime() - now) < 5000){}
+    //     console.log('finished waiting');
+    // }
+    // document.addEventListener('click', function(){
+    //     console.log('click');
+    // })
+    // console.log('click begin');
+    // waitFiveSeconds();
+    // setTimeout(()=>{
+    //   console.log(1)
+    // },1000)
+    // setTimeout(()=>{
+    //   console.log(2)
+    // },500)
+    // console.log(3)
+    var obj = {
+      say: function () {
+            function _say() {
+                console.log(this);
+            }
+            console.log(obj);
+            return _say.bind(obj);
+        }()
+    }
+    obj.say()
+  </script>
+</body>
+</html>
