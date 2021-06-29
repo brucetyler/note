@@ -22,4 +22,4 @@ function test(a) {
   function d() {}
 }
 test(1)
-test(456)
+test(789)
