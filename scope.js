@@ -22,3 +22,4 @@ function test(a) {
   function d() {}
 }
 test(1)
+test(3)
