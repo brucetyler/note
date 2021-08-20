@@ -1,3 +1,4 @@
+const A = '1'
 const PENDING = 'PENDING';
 const RESOLVED = 'RESOLVED';
 const REJECT = 'REJECT';
