@@ -21,3 +21,4 @@ function deepCopy(data){
 }
 console.log('deepCopy')
 console.log('deepCopy2')
+console.log('deepCopy3')
