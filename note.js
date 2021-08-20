@@ -12,7 +12,7 @@ function debounce(delay,fn){
     },delay)
   }
 }
-
+console.log(333)
 /**
  * 节流
  */
