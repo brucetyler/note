@@ -19,3 +19,4 @@ function deepCopy(data){
   }
   return result;
 }
+console.log('deepCopy')
